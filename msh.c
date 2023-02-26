@@ -45,7 +45,7 @@ int main()
 
   char * command_string = (char*) malloc( MAX_COMMAND_SIZE );
 
-  while( 1 )
+  while(1)
   {
     // Print out the msh prompt
     printf ("msh> ");
@@ -92,14 +92,36 @@ int main()
 
     // Now print the tokenized input as a debug check
     // \TODO Remove this for loop and replace with your shell functionality
-
-    int token_index  = 0;
-    for( token_index = 0; token_index < token_count; token_index ++ ) 
+    if(strcmp(token[0], "quit") == 0)
     {
-      printf("token[%d] = %s\n", token_index, token[token_index] );  
+      exit(0);
     }
-
-
+    else if (strcmp(token[0], "exit") == 0)
+    {
+      exit(0);
+    }
+    else
+    {
+      printf("%s: Command not found.\n", token[0]);
+      /*pid_t pid = fork();
+      if (pid == 0)
+      {
+        execvp("ls", "-l");
+      }
+      else if (pid == -1)
+      {
+        printf("Command not found.\n");
+      }
+      else
+      {
+        int status;
+        wait( &status);
+      }*/
+    }
+    if (strcmp(token[0], "cd") == 0)
+    {
+      chdir(token[1]);
+    }
     // Cleanup allocated memory
     for( int i = 0; i < MAX_NUM_ARGUMENTS; i++ )
     {
