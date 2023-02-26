@@ -118,9 +118,18 @@ int main()
         wait( &status);
       }*/
     }
+
     if (strcmp(token[0], "cd") == 0)
     {
       chdir(token[1]);
+    }
+    
+    char copy[30];
+    char MyArray[10] = strtok(token[0]," ");
+    if (strcmp(MyArray[0],"cp") == 0 || strcmp(MyArray[0],"diff") == 0 || strcmp(MyArray[0],"rm") == 0)
+    {
+      strcpy(token[0],copy);
+      printf("%s\n",copy);
     }
     // Cleanup allocated memory
     for( int i = 0; i < MAX_NUM_ARGUMENTS; i++ )
