@@ -92,6 +92,11 @@ int main()
 
     // Now print the tokenized input as a debug check
     // \TODO Remove this for loop and replace with your shell functionality
+    //char copy[30];
+    //char *tok = NULL;
+    //tok = strtok(token[0]," ");
+    if (token[0] != NULL)
+    {
     if(strcmp(token[0], "quit") == 0)
     {
       exit(0);
@@ -99,10 +104,6 @@ int main()
     else if (strcmp(token[0], "exit") == 0)
     {
       exit(0);
-    }
-    else if (token[0] == NULL)
-    {
-      continue;
     }
     else if (strcmp(token[0], "cd") == 0)
     {
@@ -115,13 +116,18 @@ int main()
         chdir(token[1]);
       }  
     }
+    /*else if ((strcmp(tok,"cp") == 0) || (strcmp(tok,"diff") == 0) || (strcmp(tok,"rm") == 0))
+    {
+      strcpy(copy,token[0]);
+      printf("%s\n",copy);
+    }*/
     else
     {
       printf("%s: Command not found.\n", token[0]);
       /*pid_t pid = fork();
       if (pid == 0)
       {
-        execvp("ls", "-l");
+        execvp(token[0], token);
       }
       else if (pid == -1)
       {
@@ -133,14 +139,7 @@ int main()
         wait( &status);
       }*/
     }
-
-    /*char copy[30];
-    char MyArray[10] = strtok(token," ");
-    if (strcmp(MyArray[0],"cp") == 0 || strcmp(MyArray[0],"diff") == 0 || strcmp(MyArray[0],"rm") == 0)
-    {
-      strcpy(token[0],copy);
-      printf("%s\n",copy);
-    }*/
+    }
     // Cleanup allocated memory
     for( int i = 0; i < MAX_NUM_ARGUMENTS; i++ )
     {
