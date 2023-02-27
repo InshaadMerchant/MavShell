@@ -92,53 +92,53 @@ int main()
 
     // Now print the tokenized input as a debug check
     // \TODO Remove this for loop and replace with your shell functionality
-    //char copy[30];
-    //char *tok = NULL;
-    //tok = strtok(token[0]," ");
+    char copy[30];
+    char *tok = NULL;
+    tok = strtok(token[0]," ");
     if (token[0] != NULL)
     {
-    if(strcmp(token[0], "quit") == 0)
-    {
-      exit(0);
-    }
-    else if (strcmp(token[0], "exit") == 0)
-    {
-      exit(0);
-    }
-    else if (strcmp(token[0], "cd") == 0)
-    {
-      if (chdir(token[1]) == -1)
+      if(strcmp(token[0], "quit") == 0)
       {
-        printf("Directory not found\n");
+        exit(0);
+      }
+      else if (strcmp(token[0], "exit") == 0)
+      {
+        exit(0);
+      }
+      else if (strcmp(token[0], "cd") == 0)
+      {
+        if (chdir(token[1]) == -1)
+        {
+          printf("Directory not found\n");
+        }
+        else
+        {
+          chdir(token[1]);
+        }  
+      }
+      else if ((strcmp(tok,"cp") == 0) || (strcmp(tok,"diff") == 0) || (strcmp(tok,"rm") == 0))
+      {
+        strcpy(copy,token[0]);
+        printf("%s\n",copy);
       }
       else
       {
-        chdir(token[1]);
-      }  
-    }
-    /*else if ((strcmp(tok,"cp") == 0) || (strcmp(tok,"diff") == 0) || (strcmp(tok,"rm") == 0))
-    {
-      strcpy(copy,token[0]);
-      printf("%s\n",copy);
-    }*/
-    else
-    {
-      printf("%s: Command not found.\n", token[0]);
-      /*pid_t pid = fork();
-      if (pid == 0)
-      {
-        execvp(token[0], token);
+        printf("%s: Command not found.\n", token[0]);
+        pid_t pid = fork();
+        if (pid == 0)
+        {
+          execvp(token[0], token);
+        }
+        else if (pid == -1)
+        {
+          printf("Command not found.\n");
+        }
+        else
+        {
+          int status;
+          wait( &status);
+        }
       }
-      else if (pid == -1)
-      {
-        printf("Command not found.\n");
-      }
-      else
-      {
-        int status;
-        wait( &status);
-      }*/
-    }
     }
     // Cleanup allocated memory
     for( int i = 0; i < MAX_NUM_ARGUMENTS; i++ )
