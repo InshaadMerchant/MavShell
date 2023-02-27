@@ -92,9 +92,9 @@ int main()
 
     // Now print the tokenized input as a debug check
     // \TODO Remove this for loop and replace with your shell functionality
-    char copy[30];
-    char *tok = NULL;
-    tok = strtok(token[0]," ");
+    //char copy[30];
+    //char *tok = NULL;
+    //tok = strtok(token[0]," ");
     if (token[0] != NULL)
     {
       if(strcmp(token[0], "quit") == 0)
@@ -116,15 +116,15 @@ int main()
           chdir(token[1]);
         }  
       }
-      else if ((strcmp(tok,"cp") == 0) || (strcmp(tok,"diff") == 0) || (strcmp(tok,"rm") == 0))
+      /*else if ((strcmp(tok,"cp") == 0) || (strcmp(tok,"diff") == 0) || (strcmp(tok,"rm") == 0))
       {
         strcpy(copy,token[0]);
         printf("%s\n",copy);
-      }
+      }*/
       else
       {
         printf("%s: Command not found.\n", token[0]);
-        pid_t pid = fork();
+        /*pid_t pid = fork();
         if (pid == 0)
         {
           execvp(token[0], token);
@@ -137,7 +137,7 @@ int main()
         {
           int status;
           wait( &status);
-        }
+        }*/
       }
     }
     // Cleanup allocated memory
