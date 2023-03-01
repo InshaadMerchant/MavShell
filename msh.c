@@ -107,14 +107,7 @@ int main()
       }
       else if (strcmp(token[0], "cd") == 0)
       {
-        if (chdir(token[1]) == -1)
-        {
-          printf("Directory not found\n");
-        }
-        else
-        {
-          chdir(token[1]);
-        }  
+        chdir(token[1]);
       }
       /*else if ((strcmp(tok,"cp") == 0) || (strcmp(tok,"diff") == 0) || (strcmp(tok,"rm") == 0))
       {
@@ -124,7 +117,7 @@ int main()
       else
       {
         printf("%s: Command not found.\n", token[0]);
-        /*pid_t pid = fork();
+        pid_t pid = fork();
         if (pid == 0)
         {
           execvp(token[0], token);
@@ -137,7 +130,7 @@ int main()
         {
           int status;
           wait( &status);
-        }*/
+        }
       }
     }
     // Cleanup allocated memory
