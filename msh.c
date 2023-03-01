@@ -108,8 +108,8 @@ int main()
       }
       else
       {
-        printf("%s: Command not found.\n", token[0]);
-        /*pid_t pid = fork();
+        printf("%s: Command not found.\n", token[0]);  
+        pid_t pid = fork();
         if (pid == 0)
         {
           int result = execvp(token[0], token);
@@ -123,7 +123,7 @@ int main()
         {
           int status;
           wait( &status);
-        }*/
+        }
       }
     }
     // Cleanup allocated memory
