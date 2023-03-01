@@ -89,7 +89,23 @@ int main()
       }
         token_count++;
     }
-
+    /*char prev_commands[15][255] = {};
+    int j;
+    if (token_count < 15)
+    {
+      for (int j = 0; j < 15; j++)
+      {
+        strcpy(prev_commands[j][255],token[0]);
+      }
+    }  
+    else
+    {
+      for (j=0 ; j< token_count; j++)
+      {
+        strcpy(prev_commands[j],prev_commands[j+1]);
+      }
+      strcpy(prev_commands[j+1][255],token[0]);
+    }*/
     // Now print the tokenized input as a debug check
     // \TODO Remove this for loop and replace with your shell functionality
     if (token[0] != NULL)
@@ -106,16 +122,25 @@ int main()
       {
         chdir(token[1]);
       }
+      /*else if (strcmp(token[0], "history") == 0)
+      {
+        for (int i=0; i<15; i++)
+        {
+          for (int j=0; j<255; j++)
+          {
+            printf("%d: %s\n", i, prev_commands[i]);
+          }  
+        }
+      }*/
       else
       {
-        printf("%s: Command not found.\n", token[0]);  
         pid_t pid = fork();
         if (pid == 0)
         {
           int result = execvp(token[0], token);
           if (result == -1)
           {
-            printf("Command not found.\n");
+            printf("%s: Command not found.\n", token[0]);
           }
           return 0;
         }
